@@ -1,0 +1,34 @@
+.preview-card {
+    position: relative;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+.preview-card:hover {
+    transform: translateY(-3px);
+}
+.preview-card img {
+    height: 160px;
+    width: 100%;
+    object-fit: cover; /* 👈 ensures proper crop */
+    border-radius: .5rem;
+}
+.remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    line-height: 26px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.remove-btn:hover {
+    background: rgba(220,53,69,0.9);
+}
