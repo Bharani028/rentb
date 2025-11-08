@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 {{-- Favicon / Tab icon --}}
-<link rel="icon" type="image/jpeg" href="{{ asset('logos/blogo.jpg') }}">
-<link rel="shortcut icon" type="image/jpeg" href="{{ asset('logos/blogo.jpg') }}">
-<link rel="apple-touch-icon" href="{{ asset('logos/blogo.jpg') }}">
+<link rel="icon" type="image/jpeg" href="{{ secure_asset('logos/blogo.jpg') }}">
+<link rel="shortcut icon" type="image/jpeg" href="{{ secure_asset('logos/blogo.jpg') }}">
+<link rel="apple-touch-icon" href="{{ secure_asset('logos/blogo.jpg') }}">
 <meta name="theme-color" content="#ffffff">
 
     @hasSection('title')

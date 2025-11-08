@@ -1,11 +1,12 @@
 @php
-    $appName   = config('app.name', 'RentB');
-    $homeUrl   = url('/');
-    $browseUrl = route('properties.browse');
-    // Use your named route if available; otherwise fall back to /contact
+    $appName = config('app.name', 'RentB');
+
+    // Always generate https URLs
+    $homeUrl    = secure_url('/');                                     // https://.../
+    $browseUrl  = route('properties.browse', [], true);                // https route
     $contactUrl = \Illuminate\Support\Facades\Route::has('contact.create')
-        ? route('contact.create')
-        : url('/contact');
+        ? route('contact.create', [], true)                            // https route
+        : secure_url('/contact');
 @endphp
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm minimal-nav">
@@ -65,10 +66,19 @@
               </li>
             </ul>
           </li>
-        @else
-          <li class="nav-item"><a href="{{ route('login') }}" class="btn btn-outline-secondary w-100 w-lg-auto">Login</a></li>
-          <li class="nav-item"><a href="{{ route('register') }}" class="btn btn-primary w-100 w-lg-auto">Register</a></li>
-        @endauth
+@else
+  <li class="nav-item">
+    <a href="{{ route('login', [], true) }}" class="btn btn-outline-secondary w-100 w-lg-auto">
+      Login
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ route('register', [], true) }}" class="btn btn-primary w-100 w-lg-auto">
+      Register
+    </a>
+  </li>
+@endauth
+
       </ul>
     </div>
   </div>
