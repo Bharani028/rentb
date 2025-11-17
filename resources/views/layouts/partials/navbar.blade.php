@@ -1,12 +1,21 @@
 @php
     $appName = config('app.name', 'RentB');
 
-    // Always generate https URLs
-    $homeUrl    = secure_url('/');                                     // https://.../
-    $browseUrl  = route('properties.browse', [], true);                // https route
-    $contactUrl = \Illuminate\Support\Facades\Route::has('contact.create')
-        ? route('contact.create', [], true)                            // https route
-        : secure_url('/contact');
+    if (app()->environment('production')) {
+        // Force HTTPS only in production
+        $homeUrl    = secure_url('/');
+        $browseUrl  = route('properties.browse', [], true);
+        $contactUrl = \Illuminate\Support\Facades\Route::has('contact.create')
+            ? route('contact.create', [], true)
+            : secure_url('/contact');
+    } else {
+        // Use current scheme (http on local)
+        $homeUrl    = url('/');
+        $browseUrl  = route('properties.browse');
+        $contactUrl = \Illuminate\Support\Facades\Route::has('contact.create')
+            ? route('contact.create')
+            : url('/contact');
+    }
 @endphp
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm minimal-nav">
